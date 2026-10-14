@@ -1,9 +1,9 @@
 {
   "name": "solomongs/laravel-wizard-installer",
-  "description": "Guided, secure Laravel installation for compatible cPanel, 20i and shared PHP hosting. Developed by Solomon Gbeta.",
+  "description": "Guided, secure Laravel installation for compatible cPanel, Multi8 Hosting and shared PHP hosting. Developed by Solomon Gbeta.",
   "type": "library",
   "license": "MIT",
-  "keywords": ["laravel", "installer", "shared-hosting", "cpanel", "20i", "wizard"],
+  "keywords": ["laravel", "installer", "shared-hosting", "cpanel", "multi8-hosting", "wizard"],
   "authors": [{"name": "Solomon Gbeta"}],
   "require": {"php": "^8.1", "illuminate/support": "^10.0 || ^11.0 || ^12.0 || ^13.0"},
   "require-dev": {"orchestra/testbench": "^8.0 || ^9.0 || ^10.0 || ^11.0", "phpunit/phpunit": "^10.5 || ^11.5 || ^12.0"},

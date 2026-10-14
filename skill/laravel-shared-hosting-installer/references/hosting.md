@@ -1,10 +1,10 @@
 # Hosting profiles
 
-Verify current official sources for platform-dependent settings. Read the 20i-hosting-ops skill when the user names it or the task performs 20i operations.
+Verify current official sources for platform-dependent settings. Read the `20i-hosting-ops` skill when the user names it or the task performs Multi8 Hosting platform operations. Use Multi8 Hosting as the customer-facing brand; retain upstream documentation URLs and the technical skill name.
 
-## 20i / StackCP
+## Multi8 Hosting / StackCP
 
-Target standard Linux shared/reseller hosting. Current official 20i documentation allows the primary domain/subdomain root to point at an existing directory within the package. Managed WordPress roots cannot be changed through that tool.
+Target standard Linux shared/reseller hosting. Current official platform documentation allows the primary domain/subdomain root to point at an existing directory within the package. Managed WordPress roots cannot be changed through that tool.
 
 - PHP: choose the project's runtime through PHP Version; verify actual web PHP and modules.
 - Settings: Manage Hosting → Options → Manage → Web Tools → PHP Configuration. Configuration propagation may take about five minutes.

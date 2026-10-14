@@ -15,7 +15,7 @@
   let toastTimer;
   const icon = (id) => `<svg class="icon" aria-hidden="true"><use href="#i-${id}"/></svg>`;
   const profiles = {
-    '20i': { label: '20i / StackCP', host: 'mysql.example.20i.com', hint: 'Copy the database server hostname from StackCP. Set your domain’s document root to the Laravel public folder.' },
+    '20i': { label: 'Multi8 Hosting / StackCP', host: 'mysql.example.host', hint: 'Copy the database server hostname from StackCP. Set your domain’s document root to the Laravel public folder.' },
     cpanel: { label: 'cPanel', host: 'localhost', hint: 'Copy full database and user names, including your account prefix. Confirm the database hostname with your provider; it may differ from localhost.' },
     other: { label: 'Other compatible hosting', host: 'db.example.test', hint: 'Use the database hostname your host provides. Confirm PHP support and a safe public document root before upload.' }
   };

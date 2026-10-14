@@ -1,6 +1,6 @@
 ---
 name: laravel-shared-hosting-installer
-description: Integrate Solomon Gbeta's Laravel Wizard Installer into an existing Laravel project, prepare a secure first-install release for 20i, cPanel, or compatible PHP shared hosting, and supply a plain-language customer guide. Use for adding a browser installation wizard, packaging Laravel for upload without customer SSH or Composer, diagnosing installer status, or preparing a fixed-public-root Laravel deployment. Preserve the project's chosen stack and starter kit.
+description: Integrate Solomon Gbeta's Laravel Wizard Installer into an existing Laravel project, prepare a secure first-install release for Multi8 Hosting, cPanel, or compatible PHP shared hosting, and supply a plain-language customer guide. Use for adding a browser installation wizard, packaging Laravel for upload without customer SSH or Composer, diagnosing installer status, or preparing a fixed-public-root Laravel deployment. Preserve the project's chosen stack and starter kit.
 ---
 
 # Laravel Shared Hosting Installer

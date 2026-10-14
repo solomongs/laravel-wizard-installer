@@ -17,4 +17,4 @@ The integration suite verifies command discovery, dotenv escaping, migration exe
 
 The wizard UI was exercised through the complete flow at 1365, 390 and 320 pixels, including password privacy and responsive overflow checks. The documentation website and content editor have separate browser checks. Syntax checks cover PHP, JavaScript and the Python harness.
 
-These automated checks use real framework/database behavior. They do not change a customer's 20i or cPanel account. The reusable skill calls for a disposable release-clone test on the intended hosting account before shipping a particular project.
+These automated checks use real framework/database behavior. They do not change a customer's Multi8 Hosting or cPanel account. The reusable skill calls for a disposable release-clone test on the intended hosting account before shipping a particular project.

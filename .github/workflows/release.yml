@@ -14,11 +14,11 @@ jobs:
     if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push'
     runs-on: ubuntu-latest
     steps:
-      - name: Tag the verified first release
+      - name: Tag the verified release
         uses: actions/github-script@v7
         with:
           script: |
-            const tag = 'v1.0.0';
+            const tag = 'v1.0.1';
             const {owner, repo} = context.repo;
             try {
               await github.rest.repos.getReleaseByTag({owner, repo, tag});
@@ -30,7 +30,7 @@ jobs:
             await github.rest.repos.createRelease({
               owner, repo, tag_name: tag,
               target_commitish: context.payload.workflow_run.head_sha,
-              name: 'Laravel Wizard Installer v1.0.0',
-              body: 'Developed by Solomon Gbeta.\n\nGuided standalone setup for compatible cPanel, 20i Linux and shared PHP hosting. Includes private setup codes, hosting diagnostics, empty MySQL/MariaDB checks, per-migration progress, protected configuration, a permanent completion lock, project hooks, documentation and reusable skill.\n\nThe package checks workflow passed for this commit. Source archives are the reusable Composer package; prepare your own Laravel application with vendor and compiled assets before a customer upload.\n\nDocumentation: https://solomongs.github.io/laravel-wizard-installer/',
+              name: 'Laravel Wizard Installer v1.0.1',
+              body: 'Developed by Solomon Gbeta.\n\nGuided standalone setup for compatible cPanel, Multi8 Hosting Linux and shared PHP hosting. Includes private setup codes, hosting diagnostics, empty MySQL/MariaDB checks, per-migration progress, protected configuration, a permanent completion lock, project hooks, documentation and reusable skill.\n\nThe package checks workflow passed for this commit. Source archives are the reusable Composer package; prepare your own Laravel application with vendor and compiled assets before a customer upload.\n\nDocumentation: https://solomongs.github.io/laravel-wizard-installer/',
               draft: false, prerelease: false,
             });

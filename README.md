@@ -1,18 +1,18 @@
 # Laravel Wizard Installer
 
-A guided browser installer for Laravel applications on compatible 20i, cPanel, and other PHP shared hosting. **Developed by Solomon Gbeta.**
+A guided browser installer for Laravel applications on compatible Multi8 Hosting, cPanel, and other PHP shared hosting. **Developed by Solomon Gbeta.**
 
 Give a customer a prepared Laravel website ZIP, a private setup code, and a clear installation path. The wizard checks the hosting environment, explains problems in plain English, saves production configuration, tests an empty MySQL/MariaDB database, runs the application's migrations in small steps, and locks itself when finished.
 
 **This repository is a reusable installer package, not a complete Laravel website.** Add it to your Laravel project before preparing that project's upload. Dependencies and frontend assets must already be built. Customers do not need Composer, Node.js, SSH, Livewire, or a license verification server to run the browser installer.
 
-[Website and interactive demo](https://solomongs.github.io/laravel-wizard-installer/) · [20i guide](docs/20i.md) · [cPanel guide](docs/cpanel.md) · [Troubleshooting](docs/troubleshooting.md) · [Project integration](docs/integration.md) · [Verification record](docs/testing.md)
+[Website and interactive demo](https://solomongs.github.io/laravel-wizard-installer/) · [Multi8 Hosting guide](docs/multi8-hosting.md) · [cPanel guide](docs/cpanel.md) · [Troubleshooting](docs/troubleshooting.md) · [Project integration](docs/integration.md) · [Verification record](docs/testing.md)
 
 ## Features
 
 - A standalone `public/install.php` entry point that can diagnose a Laravel app before its usual database-backed session boots.
 - Private, expiring setup codes; PHP sessions and CSRF protection; installation state outside the public folder.
-- Hosting profiles for 20i, cPanel, and other compatible hosts, with field hints and actionable status messages.
+- Hosting profiles for Multi8 Hosting, cPanel, and other compatible hosts, with field hints and actionable status messages.
 - PHP, extension, deployment-file, document-root, and writable-folder checks.
 - Production `.env` updates that quote values safely and keep unrelated application settings.
 - An existing `APP_KEY` is preserved; a new key is generated only when absent.
@@ -101,7 +101,7 @@ See [the security model](docs/security.md) and [recovery guide](docs/troubleshoo
 The skill is named **`laravel-shared-hosting-installer`**. Invoke it with a request such as:
 
 ```text
-Use $laravel-shared-hosting-installer to add the wizard to this Laravel project and prepare a 20i upload with a customer installation guide.
+Use $laravel-shared-hosting-installer to add the wizard to this Laravel project and prepare a Multi8 Hosting upload with a customer installation guide.
 ```
 
 The portable source is in [`skill/laravel-shared-hosting-installer`](skill/laravel-shared-hosting-installer). Copy that folder into your Codex skills directory when installing elsewhere. The skill audits the project first, integrates the Composer package, checks the hosting layout, and prepares a release with project-specific instructions. It does not assume a particular Laravel starter kit.
@@ -122,9 +122,9 @@ The tests also cover real HTTP sessions, API access guards, MySQL credentials, e
 
 ## Acknowledgements
 
-The requested reference projects were [qbifyhq/laravel-installer-wizard](https://github.com/qbifyhq/laravel-installer-wizard) and [relayercore/laravel-installer](https://packagist.org/packages/relayercore/laravel-installer). This implementation uses an original standalone shared-hosting flow rather than copying their code. The uploaded `20i.zip` hosting notes informed the 20i pitfalls and customer guidance.
+The requested reference projects were [qbifyhq/laravel-installer-wizard](https://github.com/qbifyhq/laravel-installer-wizard) and [relayercore/laravel-installer](https://packagist.org/packages/relayercore/laravel-installer). This implementation uses an original standalone shared-hosting flow rather than copying their code. The uploaded `20i.zip` hosting notes informed the Multi8 Hosting pitfalls and customer guidance.
 
-Official references: [Laravel deployment](https://laravel.com/docs/13.x/deployment), [20i document roots](https://docs.20i.com/web-hosting/change-document-root), [20i PHP configuration](https://docs.20i.com/web-hosting-site-management/php-configuration), [cPanel domain management](https://docs.cpanel.net/cpanel/domains/domains/manage-the-domain/), and [cPanel MultiPHP Manager](https://docs.cpanel.net/cpanel/software/multiphp-manager-for-cpanel/).
+Official references: [Laravel deployment](https://laravel.com/docs/13.x/deployment), [Multi8 Hosting document roots](https://docs.20i.com/web-hosting/change-document-root), [Multi8 Hosting PHP configuration](https://docs.20i.com/web-hosting-site-management/php-configuration), [cPanel domain management](https://docs.cpanel.net/cpanel/domains/domains/manage-the-domain/), and [cPanel MultiPHP Manager](https://docs.cpanel.net/cpanel/software/multiphp-manager-for-cpanel/).
 
 ## License and author
 

@@ -13,7 +13,7 @@ final class Doctor
             $checks[] = compact('id', 'label', 'status', 'detail', 'help');
         };
         $min = $this->minimumPhp();
-        $add('php', 'PHP version', version_compare(PHP_VERSION, $min, '>=') ? 'pass' : 'fail', 'Current '.PHP_VERSION.'; required '.$min.' or newer.', 'Choose this PHP version in 20i Change PHP Version or cPanel MultiPHP Manager. Your project dependencies may need a newer version.');
+        $add('php', 'PHP version', version_compare(PHP_VERSION, $min, '>=') ? 'pass' : 'fail', 'Current '.PHP_VERSION.'; required '.$min.' or newer.', 'Choose this PHP version in Multi8 Hosting Change PHP Version or cPanel MultiPHP Manager. Your project dependencies may need a newer version.');
         $vendor = is_file($this->paths->base.'/vendor/autoload.php');
         $add('vendor', 'Application dependencies', $vendor ? 'pass' : 'fail', $vendor ? 'The vendor folder is present.' : 'The vendor folder is missing.', 'Ask your developer for a prepared application ZIP including vendor. A GitHub source ZIP alone is not ready to install.');
         $framework = $this->frameworkVersion();
@@ -33,7 +33,7 @@ final class Doctor
         if ($server) {
             $root = realpath((string) ($server['DOCUMENT_ROOT'] ?? ''));
             $safe = $root && Paths::within($this->paths->public, $root) && !Paths::within($this->paths->base, $root) && !Paths::within($this->paths->private, $root);
-            $add('document_root', 'Public website folder', $safe ? 'pass' : 'fail', $safe ? 'The domain serves only the public folder.' : 'The domain is not pointed at the correct public folder.', '20i: Manage Domains > Domains > Document Root. cPanel: Domains > Manage for an editable domain. For a fixed main domain use a developer-prepared split-public layout. Do not expose the entire Laravel folder.');
+            $add('document_root', 'Public website folder', $safe ? 'pass' : 'fail', $safe ? 'The domain serves only the public folder.' : 'The domain is not pointed at the correct public folder.', 'Multi8 Hosting: Manage Domains > Domains > Document Root. cPanel: Domains > Manage for an editable domain. For a fixed main domain use a developer-prepared split-public layout. Do not expose the entire Laravel folder.');
             $https = self::https($server);
             $add('https', 'Secure HTTPS connection', $https ? 'pass' : (!empty($this->options['require_https']) ? 'fail' : 'warn'), $https ? 'Your setup connection is encrypted.' : 'The connection is HTTP.', 'Enable SSL in your hosting panel and open the https:// address. A reverse proxy may need the host to pass the HTTPS flag correctly.');
         }

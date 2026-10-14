@@ -13,7 +13,7 @@
         5: ['One step closer to live.', 'These statuses come directly from the server as each installation stage runs.'],
         6: ['Your setup is complete.', 'The installation stages have finished, and the installer is locked.'],
     };
-    const profiles = { '20i': '20i / StackCP', cpanel: 'cPanel', other: 'Another hosting panel' };
+    const profiles = { '20i': 'Multi8 Hosting / StackCP', cpanel: 'cPanel', other: 'Another hosting panel' };
     const hostTips = {
         '20i': ['In StackCP, start with PHP and MySQL.', 'Choose the project’s PHP version, create a MySQL database, and copy its actual hostname. Point your domain to the Laravel public folder.'],
         cpanel: ['In cPanel, check PHP and create a database.', 'Use MultiPHP Manager or Select PHP Version, then MySQL Database Wizard. Include account prefixes in the database and user names.'],

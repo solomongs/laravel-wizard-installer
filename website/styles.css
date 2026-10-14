@@ -15,3 +15,6 @@ h2[data-content]{white-space:pre-line}.text-link [data-content]{font-size:inheri
 
 .host-wordmark small{width:auto}.host-other small{white-space:normal}.footer-links{flex-wrap:wrap}
 .cms-field textarea{font-family:var(--font)}
+
+/* Multi8 Hosting wordmarks retain readable proportions on mobile. */
+.host-wordmark.host-20i{font-size:clamp(1.3rem,2.1vw,1.9rem);letter-spacing:-.045em}.host-wordmark.host-20i>span{display:block;font-size:.55em;letter-spacing:.06em;font-weight:600;font-style:normal}.guide-host-mark{line-height:1.05}.guide-host-mark>span{display:block;font-size:.42em;letter-spacing:.035em;font-style:normal}

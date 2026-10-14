@@ -28,7 +28,7 @@ Do not publish the code in an issue. Do not remove a completion lock to make an 
 
 ## The database test failed
 
-Check the actual hosting-panel hostname, port, complete database name, and username. On cPanel, account prefixes are part of the names. On 20i, the hostname may not be `localhost`.
+Check the actual hosting-panel hostname, port, complete database name, and username. On cPanel, account prefixes are part of the names. On Multi8 Hosting, the hostname may not be `localhost`.
 
 Confirm the database user is assigned to the database with the privileges required for migrations. Enter special characters in the password exactly as they appear; the installer handles environment quoting.
 

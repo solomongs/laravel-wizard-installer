@@ -1,0 +1,70 @@
+# Installing on Multi8 Hosting shared hosting
+
+This guide targets **standard Linux shared hosting**, including reseller packages managed through StackCP. Multi8 Hosting Managed WordPress and Laravel Managed Cloud are different products. This installer does not rely on the Managed Cloud Laravel Command Executor.
+
+## Before uploading
+
+Ask your developer for a prepared website ZIP containing dependencies, built assets, `public/install.php`, and private preparation state. Obtain the setup code separately. A download of this installer repository alone cannot install your website.
+
+Prepare an empty package or a new project directory. If another site already uses the package, keep its files and database backed up and test in a separate subdomain before changing the live domain.
+
+## 1. Choose PHP
+
+Open the package in Multi8 Hosting StackCP and find **PHP Version**. Select the version required by the website's release instructions. The wizard will check the actual web PHP version and extensions.
+
+Do not choose a version solely from the installer minimum. Laravel 13 needs PHP 8.3 or newer; projects can require more.
+
+For memory, upload size, and execution time, use **Manage Hosting → Options → Manage → Web Tools → PHP Configuration**. Changes may take around five minutes to become active. Do not put `php_flag` or `php_value` directives in `.htaccess` on this platform; use the panel or the appropriate per-directory PHP configuration.
+
+## 2. Create a database
+
+Open the package's **MySQL Databases** tool and create a new database/user. Record the exact values the panel provides. The database server hostname is often different from the website address; do not replace it with `localhost` unless the panel says so.
+
+The wizard needs permission to create and alter the application's tables. Use an empty database dedicated to this website. If the wizard finds unrelated tables, create another database instead of deleting them.
+
+## 3. Upload and extract
+
+Use File Manager or SFTP to upload the prepared ZIP and extract it into a dedicated folder, for example `laravel-app`. Confirm that this folder contains `artisan`, `bootstrap/`, `vendor/`, `storage/`, and `public/`. Ensure hidden files such as `public/.htaccess` were included.
+
+Do not flatten all Laravel files into the web-served public folder.
+
+## 4. Set the document root
+
+For standard Linux packages, the hosting panel supports changing a domain's root to an existing directory within the package:
+
+1. Go to **Manage Hosting → Options → Manage → Manage Domains → Domains**.
+2. Set the root to `laravel-app/public` for the example above.
+3. Select **Update**.
+
+For a subdomain, use **Domains → Subdomains → Modify Subdomains**. The folder must already exist, and DNS must point to this hosting package.
+
+**Managed WordPress packages cannot change their document roots through this tool.** Choose a standard Linux package, or ask your developer and host for a supported layout. A rewrite from an exposed Laravel project root is not a substitute for a private application directory.
+
+## 5. HTTPS and browser installation
+
+Enable a certificate for the domain through the package's SSL controls. Choose one canonical HTTPS redirect mechanism and check that the site has no redirect loop. If Cloudflare is involved, use the host's documented proxy setup rather than trusting arbitrary forwarded headers.
+
+Open `https://your-domain.example/install.php`, enter the private setup code, and select **Multi8 Hosting / StackCP**. Follow each status message. A “Needs attention” item should explain the action required in the hosting panel or File Manager.
+
+Enter your site name, final HTTPS address, and the database details exactly as supplied. Review the settings and install. Leave the tab open while migrations run.
+
+## After completion
+
+Open the site and test sign-in, the main pages, any file uploads, and email. Remove `public/install.php` through File Manager; preserve the private completion lock. If the website needs a scheduler or mail provider, use the developer's project-specific instructions.
+
+Multi8 Hosting **Scheduled Tasks** can run appropriate short commands. Do not assume shared hosting supports permanent queue workers, Reverb, Horizon, Octane, or other always-on processes. Those requirements need separate review or a suitable managed server.
+
+## Common fixes
+
+| Status or symptom | What to check |
+|---|---|
+| 403 after changing the root | The target folder exists and contains `public/index.php`; the root points at the intended folder |
+| 500 immediately after upload | Correct PHP version; all dependency files uploaded; no unsupported `php_flag`/`php_value` lines |
+| Database test fails | Exact hostname, database name, username, password, and database privileges |
+| Folder not writable | Ownership and permissions of `storage/`, `bootstrap/cache/`, and the `.env` target; ask the host if ownership is wrong |
+| Redirect loop | One agreed HTTPS redirect and correct proxy configuration |
+| Setup code expired | Ask the developer to prepare fresh pre-install state; the expiry begins when prepared |
+
+Do not use `777` permissions as a general fix. A permission error can be caused by ownership, not the numeric mode.
+
+Sources checked 14 October 2026: [Multi8 Hosting document roots](https://docs.20i.com/web-hosting/change-document-root), [PHP configuration](https://docs.20i.com/web-hosting-site-management/php-configuration), [PHP versions](https://docs.20i.com/stackcp/change-php-version), and [shared-hosting modules](https://docs.20i.com/web-hosting/php-modules-available-on-shared-hosting).

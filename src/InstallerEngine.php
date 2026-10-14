@@ -35,7 +35,7 @@ class InstallerEngine
 
     public function profile(string $profile): array
     {
-        if (!in_array($profile, ['20i','cpanel','other'], true)) throw new InstallerException('Choose 20i, cPanel or another shared host.', 'profile');
+        if (!in_array($profile, ['20i','cpanel','other'], true)) throw new InstallerException('Choose Multi8 Hosting, cPanel or another shared host.', 'profile');
         return $this->store->locked(function () use ($profile): array {
             $this->ensureOpen();
             $state = $this->store->read();
@@ -133,7 +133,7 @@ class InstallerEngine
                     $state['message'] = $step['label'].' completed.';
                     if ($step['kind'] === 'finalize') {
                         // Write the fail-closed marker BEFORE any success response or cleanup.
-                        $this->store->write(['installed_at' => gmdate('c'), 'version' => '1.0.0'], 'installed');
+                        $this->store->write(['installed_at' => gmdate('c'), 'version' => '1.0.1'], 'installed');
                         $state['phase'] = 'complete';
                         $state['message'] = 'Your website is installed. Setup is permanently locked.';
                     }
