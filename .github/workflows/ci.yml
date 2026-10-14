@@ -1,0 +1,90 @@
+name: Package checks
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: PHP ${{ matrix.php }} / Laravel ${{ matrix.laravel }}
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root_ci_only
+          MYSQL_DATABASE: wizard_e2e
+          MYSQL_USER: wizard_test
+          MYSQL_PASSWORD: wizard_ci_only
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - php: '8.1'
+            laravel: '10'
+            testbench: '^8.0'
+            legacy: true
+          - php: '8.2'
+            laravel: '11'
+            testbench: '^9.0'
+            legacy: true
+          - php: '8.2'
+            laravel: '12'
+            testbench: '^10.0'
+            legacy: false
+          - php: '8.3'
+            laravel: '13'
+            testbench: '^11.0'
+            legacy: false
+          - php: '8.4'
+            laravel: '13'
+            testbench: '^11.0'
+            legacy: false
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: mbstring, dom, xml, pdo_sqlite, pdo_mysql, fileinfo, curl, zip
+          coverage: none
+          tools: composer:v2
+      - name: Validate Composer package
+        run: composer validate --strict
+      - name: Allow legacy dependencies only in this disposable compatibility job
+        if: matrix.legacy
+        run: composer config audit.block-insecure false
+      - name: Install the matching Laravel test environment
+        run: composer update --with="orchestra/testbench:${{ matrix.testbench }}" --prefer-dist --no-interaction --no-progress
+      - name: Audit supported Laravel dependencies
+        if: ${{ !matrix.legacy }}
+        run: composer audit
+      - name: Report known upstream legacy advisories
+        if: matrix.legacy
+        continue-on-error: true
+        run: composer audit
+      - name: Check PHP syntax
+        run: find src config bin resources tests bootstrap.php -type f -name '*.php' -print0 | xargs -0 -n 1 php -l
+      - name: Run standalone unit tests
+        run: php tests/run.php
+      - name: Run Laravel integration tests
+        run: vendor/bin/phpunit
+      - name: Test the complete installer over HTTP and MySQL
+        run: python3 tests/http-e2e.py
+        env:
+          WIZARD_TEST_DB_HOST: 127.0.0.1
+          WIZARD_TEST_DB_PORT: '3306'
+          WIZARD_TEST_DB_DATABASE: wizard_e2e
+          WIZARD_TEST_DB_USERNAME: wizard_test
+          WIZARD_TEST_DB_PASSWORD: wizard_ci_only

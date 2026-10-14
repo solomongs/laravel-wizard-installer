@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "strings": {
+    "hero.eyebrow": "A reusable installer for Laravel",
+    "hero.titleLine1": "Shared hosting.",
+    "hero.emphasis": "Simple",
+    "hero.titleLine2": "setup.",
+    "hero.description": "Give your Laravel website a friendly welcome. Turn server checks, database settings, and installation into one clear, guided journey.",
+    "hero.primaryAction": "Explore the installer",
+    "hero.secondaryAction": "Add it to your project",
+    "how.title": "A welcome mat for\nyour Laravel website.",
+    "how.description": "Once a developer prepares your project, the installer guides the website owner through the parts that usually feel technical.",
+    "demo.title": "Know what to expect.\nBefore you install.",
+    "demo.description": "Click through a sample installation. This is a local simulation with fictional settings. It never connects to a server, requests a setup token, or collects credentials.",
+    "hosting.title": "You don’t have to\nknow every technical term.",
+    "hosting.description": "Choose the guide that matches your hosting. Menu names can vary by provider, so the installer explains the goal behind each step.",
+    "requirements.title": "Good hosting.\nClear requirements.",
+    "requirements.description": "The wizard supports compatible shared hosting, including 20i Linux and cPanel setups. No installer can make every hosting plan support every Laravel project.",
+    "developer.title": "One reusable package.\nMany Laravel projects.",
+    "developer.description": "Prepare installation once, then hand your client a guided path. Keep your project’s own migrations and use the supplied hook to add project-specific setup such as an administrator account.",
+    "faq.title": "Less guesswork.\nMore confidence.",
+    "faq.description": "Useful answers before you upload.",
+    "closing.title": "A smoother first day\nfor your next website."
+  },
+  "faq": [
+    {
+      "question": "Do I need SSH or Composer on my hosting?",
+      "answer": "No, if your developer prepares the complete project before upload. Composer dependencies, built assets, and installer preparation happen on a developer workstation or in CI. The website owner then uses the browser wizard."
+    },
+    {
+      "question": "Can it install any Laravel website?",
+      "answer": "It is a reusable installer package for Laravel projects, not a universal server provisioner. The project and hosting still need compatible PHP versions, extensions, database privileges, and storage. Projects requiring persistent workers or special services need separate hosting support."
+    },
+    {
+      "question": "What happens if a check fails?",
+      "answer": "The installer shows the failed check and practical next steps. For example, you may need to change PHP versions, enable an extension, correct a document root, or make a required directory writable. Fix the problem and check again before continuing."
+    },
+    {
+      "question": "Where do I get my database details?",
+      "answer": "Create the database in your hosting control panel. Save its full database name, assigned user, password, and host address. cPanel often adds an account prefix to names. On 20i, use the database hostname shown in StackCP rather than assuming localhost."
+    },
+    {
+      "question": "Does it create an administrator account?",
+      "answer": "Only when your developer implements the project-specific setup hook. Different Laravel applications use different account tables, roles, and authentication. The installer does not assume one universal administrator structure."
+    },
+    {
+      "question": "Can someone run the installer again?",
+      "answer": "Setup requires the private token, and successful completion writes a permanent installation lock. Keep HTTPS enabled, protect the private application directory, and never publish the setup token. Reinstallation is a deliberate developer operation, not a public button."
+    },
+    {
+      "question": "Can I try this demo with real credentials?",
+      "answer": "No. This documentation website is a simulation. It has no credential fields and never connects to your hosting or database. Enter real details only in the prepared installer hosted on your own secured domain."
+    }
+  ]
+}

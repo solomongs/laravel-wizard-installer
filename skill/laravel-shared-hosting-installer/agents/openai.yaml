@@ -1,0 +1,4 @@
+interface:
+  display_name: "Laravel Shared Hosting Installer"
+  short_description: "Prepare guided Laravel installs for shared hosting"
+  default_prompt: "Use $laravel-shared-hosting-installer to add a secure browser installation wizard to this Laravel project and prepare its shared hosting upload."
